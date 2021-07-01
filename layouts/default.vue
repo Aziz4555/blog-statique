@@ -81,13 +81,7 @@ export default {
       Auclick(param){
         const  navigation =document.querySelector('#navigation')
         const menulink=document.querySelector(param)
-        menulink.addEventListener('click', function (){
           navigation.classList.add('hidden')
-
-        })
-        // menulink.onclick=function (){
-        //   navigation.classList.add('hidden')
-        // }
       }
     }
   }
