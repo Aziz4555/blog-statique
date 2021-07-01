@@ -2,7 +2,7 @@
   <div>
 
     <nav class="flex items-center bg-green-700 p-3 flex-wrap ">
-      <nuxt-link to="#" class="p-2 mr-4 inline-flex items-center">
+      <nuxt-link to="/" class="p-2 mr-4 inline-flex items-center">
         <span class="text-xl text-white font-bold uppercase tracking-wide">Blog</span>
       </nuxt-link>
 
