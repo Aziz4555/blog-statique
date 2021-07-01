@@ -13,30 +13,30 @@
 
       <div class="top-nav w-full lg:inline-flex lg:flex-grow lg:w-auto hidden " id="navigation">
 
-        <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col">
+        <div class="lg:inline-flex lg:flex-row lg:ml-auto flex flex-col" id="menu">
 
-            <nuxt-link class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
-            hover:bg-green-800" to="/">
+            <nuxt-link v-on:click.native="Auclick('#Accueil')" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
+            hover:bg-green-800" id="Accueil" to="/">
               <span>Accueil</span>
             </nuxt-link>
 
-          <nuxt-link class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
-            hover:bg-green-800" to="/articles">
-            <span>Articles</span>
-          </nuxt-link>
+<!--          <nuxt-link @click.native="Auclick('#Articles')" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white-->
+<!--            hover:bg-green-800" id="Articles" to="/articles">-->
+<!--            <span>Articles</span>-->
+<!--          </nuxt-link>-->
 
-            <nuxt-link class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
-            hover:bg-green-800" to="/auteur">
+            <nuxt-link @click.native="Auclick('#Auteur')" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
+            hover:bg-green-800" id="Auteur" to="/auteur">
               <span>Auteur</span>
             </nuxt-link>
 
-          <nuxt-link class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
-            hover:bg-green-800" to="/css">
+          <nuxt-link @click.native="Auclick('#CSS')" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
+            hover:bg-green-800" id="CSS" to="/css">
             <span>CSS</span>
           </nuxt-link>
 
-          <nuxt-link class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
-            hover:bg-green-800" to="/css2">
+          <nuxt-link @click.native="Auclick('#CSS2')" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-300 hover:text-white
+            hover:bg-green-800" id="CSS2" to="/css2">
             <span>CSS2</span>
           </nuxt-link>
 
@@ -75,6 +75,19 @@ export default {
       // })
       navigation.classList.toggle('hidden')
 
+
+      },
+
+      Auclick(param){
+        const  navigation =document.querySelector('#navigation')
+        const menulink=document.querySelector(param)
+        menulink.addEventListener('click', function (){
+          navigation.classList.add('hidden')
+
+        })
+        // menulink.onclick=function (){
+        //   navigation.classList.add('hidden')
+        // }
       }
     }
   }

@@ -2,8 +2,10 @@
 
 
 
-  <div class="bg-green-400 ">
-    <h2 class="block text-center pt-12 pb-12 bg-green-400 text-5xl text-white ">Les Articles</h2>
+  <div class="bg-green-400">
+    <h2 class="block text-center pt-12 pb-12 bg-green-400 text-5xl text-white ">Bienvenue !</h2>
+    <h3 class="text-white text-xl pb-6 pr-3 pl-3 text-center">Tu as atterri dans un blog où on parle football, ce sport possède la communauté de passionné la plus grande au monde.
+    <br> Et toi et nous en faisons partie. Dans ce blog, découvre les articles sur les plus grandes légendes du football, mais également des stars du moment et des futurs grand joueur.</h3>
 
     <div class="grid md:grid-cols-3 ">
 
