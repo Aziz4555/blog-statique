@@ -7,16 +7,25 @@
     <h3 class="text-white text-xl pb-6 pr-3 pl-3 text-center">Tu as atterri dans un blog où on parle football, ce sport possède la communauté de passionné la plus grande au monde.
     <br> Et toi et nous en faisons partie. Dans ce blog, découvre les articles sur les plus grandes légendes du football, mais également des stars du moment et des futurs grand joueur.</h3>
 
+    <div class="mr-3 text-white text-right" id="selected">
+      <select class="bg-green-800 outline-none rounded" v-model="selected">
+        <option value="">Tous</option>
+        <option  v-for="(tag,index) in tag_id" :value="tag"  :key="index">{{tag}}</option>
+      </select>
+    </div>
+
+
     <div class="grid md:grid-cols-3 ">
 
-      <div class="m-2 flex flex-col rounded-3xl border border-solid border-white p-5 " v-for="(post,index) in posts" :key="index">
+      <div class="m-2 flex flex-col rounded-3xl border border-solid border-white p-5 " v-for="(post,index) in triePost" :key="index">
+        <p>{{post.fields.tags}}</p>
         <img class="max-w-full rounded-t-3xl rounded-tr-3xl" :src="post.fields.couverture.fields.file.url" alt="" >
 
-        <nuxt-link class="text-white sm:mt-2.5" v-bind:to="post.fields.tag">
+        <nuxt-link class="text-white text-xl sm:mt-2.5 hover:text-gray-200" v-bind:to="post.fields.tag">
           <span>{{post.fields.titre}}</span>
         </nuxt-link>
 
-        <p class="text-white" id="preview">{{post.fields.body}}</p>
+        <p class="text-white " id="preview">{{post.fields.body}}</p>
 
         <nuxt-link class="text-white w-3/5 text-center self-center  border border-solid border-green-800  pt-3 pb-3 pr-12 pl-12 rounded-2xl bg-green-800" id="plus" v-bind:to="post.fields.tag">
           <span>Plus</span>
@@ -36,6 +45,8 @@
 <!--      <img src="../assets/terrain_de_foot.jpg" alt="terrain" id="terrain" class="z-0">-->
   </div>
 
+
+
   </div>
 
 
@@ -47,13 +58,68 @@ import {createClient} from '../plugins/contentful.js'
 const client=createClient()
 
 export default {
+  data(){
+    return{
+      posts:[],
+      tag_id:[],
+      selected:""
+    }
+  },
+
+  computed:{
+    triePost(){
+      const p=[]
+
+      if(this.selected===""){
+        return this.posts
+      }else{
+
+        for(var i=0; i<this.posts.length; i++) {
+          const unPost = this.posts[i]
+          if (unPost.metadata.tags.length > 0) {
+            const desTags = unPost.metadata.tags
+            for (var j = 0; j < desTags.length; j++) {
+              if (desTags[j].sys.id === this.selected) {
+                p.push(unPost)
+              }
+            }
+          }
+        }
+        return p
+      }
+    }
+  },
+
   asyncData({env}){
     return client.getEntries({
       content_type:'post'
     }).then(entries => {
-      return {posts: entries.items}
+
+      const tags=[]
+      const tagid=[]
+      for(var i=0; i<entries.items.length;i++){
+        if(entries.items[i].metadata.tags.length>0){
+          tags.push(entries.items[i].metadata.tags)
+        }
+
+      }
+
+
+
+      for(var i=0; i<tags.length;i++) {
+        for (var j = 0; j < tags[i].length; j++) {
+          if(!(tagid.includes(tags[i][j].sys.id))){
+            tagid.push(tags[i][j].sys.id)
+          }
+
+        }
+      }
+
+      return {posts: entries.items, tag_id:tagid}
+
     }).catch(e => console.log(e))
   }
+
 }
 </script>
 
@@ -182,4 +248,12 @@ export default {
 }
 
 
+
+
+@media screen and (max-width:768px) {
+  #selected{
+    text-align: center;
+  }
+
+}
 </style>

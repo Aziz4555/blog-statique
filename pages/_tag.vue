@@ -1,16 +1,22 @@
 <template>
-  <div>
-    <img :src="post.fields.couverture.fields.file.url" alt="" width="50px">
-    <h1>Le titre de l'article</h1>
-      <h3>{{post.fields.titre}}</h3>
+  <div class="block bg-green-400 text-white">
+
+      <h1 class="text-5xl pt-12 pb-12  text-center">{{post.fields.titre}}</h1>
+    <img class="w-full p-3" :src="post.fields.couverture.fields.file.url" alt="" width="50px">
       <hr>
-    <p>
-      <nuxt-link to="/">retour</nuxt-link>
-    </p>
-    <div class="content">
-      <h1>Le contenu de l'article</h1>
-      {{post.fields.body}}
+
+    <div class="pb-6">
+      <p class="text-xl text-justify pr-3 pl-3"> {{post.fields.body}}</p>
+
+    <p class="text-xl text-justify pr-3 pl-3">tag : {{post.fields.tag}}</p>
+
+      <nuxt-link class="block text-white w-2/5 mr-auto ml-auto text-center border border-solid border-green-800  pt-3 pb-3 pr-12 pl-12 rounded-2xl bg-green-800" id="retour" v-bind:to="post.fields.tag">
+        <span>Retour</span>
+      </nuxt-link>
+
     </div>
+
+
   </div>
 </template>
 
@@ -32,5 +38,21 @@ export default {
 </script>
 
 <style scoped>
+
+#retour:hover{
+  animation: plusAnim 1.5s linear;
+}
+
+@keyframes plusAnim {
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
 
 </style>

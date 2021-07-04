@@ -52,8 +52,15 @@
 
 <style scoped>
 
+* {
+  font-family: 'Akaya Kanadaka', cursive;
+}
+
+
 #navigation{
   transition: 10s;
+  /*transform:translateX(-100%);*/
+  /*transform-origin: top;*/
 }
 
 </style>
@@ -63,10 +70,11 @@ export default {
   methods:{
     toggle(){
       const  navigation =document.querySelector('#navigation')
+
       // navigation.animate([
       //   // {heigth:'toggle'}
-      //   {margin:'0 0 0 0', width:'100%'},
-      //   {margin:'35px 0 0 0', width:'100%'},
+      //   {transform:'translateY(-15%)'},
+      //   {transform:'translate(0%)'},
       //
       //
       // ], {
