@@ -10,7 +10,7 @@
 
     <p class="text-xl text-justify pr-3 pl-3">tag : {{post.fields.tag}}</p>
 
-      <nuxt-link class="block text-white w-2/5 mr-auto ml-auto text-center border border-solid border-green-800  pt-3 pb-3 pr-12 pl-12 rounded-2xl bg-green-800" id="retour" v-bind:to="post.fields.tag">
+      <nuxt-link class="block text-white w-2/5 mr-auto ml-auto text-center border border-solid border-green-800  pt-3 pb-3 pr-12 pl-12 rounded-2xl bg-green-800" id="retour" to="/">
         <span>Retour</span>
       </nuxt-link>
 
